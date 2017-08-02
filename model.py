@@ -3,13 +3,14 @@ from keras.applications.vgg16 import VGG16
 from keras.layers import Dense, LeakyReLU
 from keras.layers import BatchNormalization, GlobalAveragePooling2D
 
+WIDTH = 480
+HEIGHT = 640
+
 
 def make_model():
-    width = 480
-    height = 640
 
     vgg16 = VGG16(include_top=False, weights='imagenet',
-                  input_shape=(width, height, 3))
+                  input_shape=(WIDTH, HEIGHT, 3))
     inputs = vgg16.output
     x = GlobalAveragePooling2D()(inputs)
     x = Dense(4096)(x)

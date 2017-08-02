@@ -1,0 +1,18 @@
+{
+  "objects" : [
+    {
+      "label" : "gomi",
+      "x_y_w_h" : [
+        48.75,
+        362.1728,
+        40.74245,
+        50.00419
+      ]
+    }
+  ],
+  "image_path" : "\/Users\/quantan\/Downloads\/1\/445.jpg",
+  "image_w_h" : [
+    640,
+    480
+  ]
+}
