@@ -54,13 +54,14 @@ def main():
               callbacks=[checkpointer, early_stopping])
 
     score = model.evaluate(
-        x_test, [y_xywh_test, y_c_test, z_test], verbose=1, batch_size=8)
+        x_test, [y_xywh_test, y_c_test, z_test], verbose=1,
+        batch_size=BATCH_SIZE)
+
     print(score[0], score[1])
 
     json_string = model.to_json()
     with open('model.json', 'w') as f:
         f.write(json_string)
-        f.close()
 
         model.save_weights('param.hdf5')
     model.save('model.h5')

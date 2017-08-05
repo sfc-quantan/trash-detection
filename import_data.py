@@ -8,29 +8,31 @@ from sklearn.cross_validation import train_test_split
 NUMBER_OF_TRASH = 7
 
 
+def y_split(y_array):
+    y_xywh_t = np.zeros((len(y_array), NUMBER_OF_TRASH, 4))
+    y_c_t = np.zeros((len(y_array), NUMBER_OF_TRASH))
+    print(y_xywh_t.shape, y_c_t.shape)
+    for i in range(len(y_array)):
+        for j in range(len(y_array[0])):
+            y_xywh_t[i][j] = y_array[i][j][:4]
+            if(y_array[i][j][4] == 1):
+                y_c_t[i][j] = 1
+
+    return y_xywh_t, y_c_t
+
+
+def y_normalization(y_array):
+    for i in range(len(y_array)):
+        for j in range(len(y_array[0])):
+            y_array[i][j][0] = y_array[i][j][0] / 640
+            y_array[i][j][1] = y_array[i][j][1] / 480
+            y_array[i][j][2] = y_array[i][j][2] / 640
+            y_array[i][j][3] = y_array[i][j][3] / 480
+
+    return y_array
+
+
 def make_data():
-
-    def y_split(y_array):
-        y_xywh_t = np.zeros((len(y_array), NUMBER_OF_TRASH, 4))
-        y_c_t = np.zeros((len(y_array), NUMBER_OF_TRASH))
-        print(y_xywh_t.shape, y_c_t.shape)
-        for i in range(len(y_array)):
-            for j in range(len(y_array[0])):
-                y_xywh_t[i][j] = y_array[i][j][:4]
-                if(y_array[i][j][4] == 1):
-                    y_c_t[i][j] = 1
-
-        return y_xywh_t, y_c_t
-
-    def y_normalization(y_array):
-        for i in range(len(y_array)):
-            for j in range(len(y_array[0])):
-                y_array[i][j][0] = y_array[i][j][0] / 640
-                y_array[i][j][1] = y_array[i][j][1] / 480
-                y_array[i][j][2] = y_array[i][j][2] / 640
-                y_array[i][j][3] = y_array[i][j][3] / 480
-
-        return y_array
 
     x = np.load("x.npy")
     y = np.load("y.npy")
