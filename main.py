@@ -50,7 +50,7 @@ def main():
 
     model.fit(x=x_train, y=[y_xywh_train, y_c_train, z_train],
               batch_size=BATCH_SIZE, epochs=EPOCH, verbose=1,
-              validation_data=(x_test, [y_xywh_test, y_c_test, z_test]),
+              validation_split=0.1,
               callbacks=[checkpointer, early_stopping])
 
     score = model.evaluate(
