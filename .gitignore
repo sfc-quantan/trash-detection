@@ -1,1 +1,6 @@
 *.npy
+*.npz
+*.jpg
+*.json
+*.h5
+*.hdf5
